@@ -25,14 +25,23 @@ Fonctionnalités obligatoires de l'application:
 	
 L'application contient 10 entités:
 * Activities
+
 * Categories
+
 * SousCategories
+
 * User
+
 * Excel
+
 * MontantCategorie
+
 * MontantJour
+
 * MontantSousCategorie
+
 * MontantTotalJour
+
 * MontantSemaine
 
 2) Les fonctions
@@ -42,21 +51,38 @@ L'application comporte un mode utilisateur normal et mode administrateur.
 L'administrateur peut accéder au fonctions d'un utilisateur normal.
 
 Liste des fonctions :
-**test
+* Pour utilisateur simple:
+* * Vision de la semaine actuel
+
+* * Export de la semaine
+
+* * Import d'un fichier Excel
+
+* * Ajout d'un activité
+
+* * Edition / suppression d'une activité
+
+* * Modification profil utilisateur
+
+* Pour l'administrateur :
+* * Liste des utilisateurs
+* * Ajout d'un utilisateur
+* * Suppression utilisateur
+* * Comparaison des montants 
+
 
 	
+3) Configuration
+----------------
+Mon symfony à la configuration suivante:
 
-Mon symfony est configuré avec les bundles suivants:
+  * Twig est le seul moteur de template pour le html;
 
-  * Twig is the only configured template engine;
+  * Doctrine ORM/DBAL est configuré;
 
-  * Doctrine ORM/DBAL is configured;
+  * Les Annotations sont disponibles.
 
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
+Les bundles de mon application:
 
   * **FrameworkBundle** - The core Symfony framework bundle
 
@@ -90,6 +116,8 @@ It comes pre-configured with the following bundles:
   * [**DoctrineFixtureBundle**][14] Charger un ensemble de données dans la base
     avec Doctrine 
 
+  * [**PHPExcel**][15] Traitement des fichier Excel en PHP
+
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
 
@@ -109,3 +137,4 @@ Enjoy!
 [12]: http://symfony.com/doc/2.4/cookbook/assetic/asset_management.html
 [13]: http://symfony.com/doc/2.4/bundles/SensioGeneratorBundle/index.html
 [14]: http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+[15]: https://github.com/PHPOffice/PHPExcel
