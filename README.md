@@ -52,23 +52,26 @@ L'administrateur peut accéder au fonctions d'un utilisateur normal.
 
 Liste des fonctions :
 * Pour utilisateur simple:
-* * Vision de la semaine actuel
+  * Vision de la semaine actuel
 
-* * Export de la semaine
+  * Export de la semaine
 
-* * Import d'un fichier Excel
+  * Import d'un fichier Excel
 
-* * Ajout d'un activité
+  * Ajout d'un activité
 
-* * Edition / suppression d'une activité
+  * Edition / suppression d'une activité
 
-* * Modification profil utilisateur
+  * Modification profil utilisateur
 
 * Pour l'administrateur :
-* * Liste des utilisateurs
-* * Ajout d'un utilisateur
-* * Suppression utilisateur
-* * Comparaison des montants 
+  * Liste des utilisateurs
+
+  * Ajout d'un utilisateur
+
+  * Suppression utilisateur
+
+  * Comparaison des montants 
 
 
 	
