@@ -1,0 +1,18 @@
+
+
+	
+	<h3>Suppression activité</h3>
+	
+	<p>
+ 	  Etes-vous certain de vouloir supprimer cette activité
+
+ 	{# On met l'id de l'annonce dans la route de l'action du formulaire #}
+ 	<form action="{{ path('nf_platform_delete', {'id': activite.id}) }}" method="post">
+ 	  <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+ 	  {# Ici j'ai écrit le bouton de soumission à la main #}
+ 	  <input type="submit" value="Supprimer" class="btn btn-danger" />
+ 	  {# Ceci va générer le champ CSRF #}
+ 	  {{ form_rest(form) }}
+ 	</form>
+
+	

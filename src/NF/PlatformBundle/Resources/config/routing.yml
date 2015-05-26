@@ -1,0 +1,59 @@
+nf_platform_home:
+    path: /{year}/{month}/{day}/{param}/{id}
+    defaults : {_controller: NFPlatformBundle:Activities:index,year:%current_year%, month: %current_month%, day:%current_day%, param: NULL, id: NULL}
+    requirements:
+        year: \d+
+        month: \d+
+        day: \d+
+        id: \d+
+
+nf_platform_add:
+    path: /add/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:add, id:NULL}
+    requirements:
+        id: \d+
+
+nf_platform_excel:
+    path: /excel/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:downloadExcel, id:NULL}
+    requirements:
+        id: \d+
+
+nf_platform_edit:
+    path: /edit/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:edit}
+    requirements:
+        id: \d+
+
+nf_platform_delete:
+    path: /delete/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:delete}
+    requirements:
+        id: \d+
+        idUser: \d+
+
+nf_platform_add_user:
+    path : /addUser/
+    defaults: {_controller: NFPlatformBundle:Activities:addUser}
+
+nf_platform_all_user:
+    path: /allUser
+    defaults: {_controller: NFPlatformBundle:Activities:allUser}
+
+nf_platform_edit_user:
+    path: /editUser/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:editUser}
+    requirements:
+        id: \d+
+
+nf_platform_delete_user:
+    path: /deleteUser/{id}
+    defaults: {_controller: NFPlatformBundle:Activities:deleteUser}
+    requirements:
+        id: \d+
+
+nf_platform_comparatif:
+    path : /comparatif/{week}
+    defaults: {_controller: NFPlatformBundle:Activities:comparaison, week: NULL}
+    requirements:
+        week: \d+

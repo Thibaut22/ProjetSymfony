@@ -1,0 +1,39 @@
+{% extends "NFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifié une activité - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div>
+		<a class="btn btn-default" href="{{ path('nf_platform_home'
+		) }}" role="button"> <span aria-hidden="true">&larr;</span> Retour semaine actuelle</a>
+
+	</div>
+
+
+	 <h2>Edition de l'activité</h2>
+	 	
+	
+		<h4>Sous-catégorie : {{ activite.sousCategories.title }} du {{ activite.date | date('d/m/Y') }} </h4>
+
+	 		{{ include("NFPlatformBundle:Activities:form.html.twig") }}
+    
+	 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+ 		Supprimer l'activité
+	</button>	
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+		    </div>
+		    <div class="modal-body">
+		     {{ include("NFPlatformBundle:Activities:delete.html.twig")}}
+		    </div>
+		  </div>
+		</div>
+	</div>	
+
+{% endblock %}

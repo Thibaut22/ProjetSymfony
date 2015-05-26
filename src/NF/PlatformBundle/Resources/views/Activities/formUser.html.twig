@@ -1,0 +1,53 @@
+<div class="well">
+	{{ form_start(form, {'attr':{'class':'form-horizontal'}}) }}
+	{{ form_errors(form) }}
+
+	<div class="form-group">
+		{{ form_label(form.firstname, "Prénom", {'label_attr': {'class': 'col-sm-3 control-label'}})}}
+
+		{{ form_errors(form.firstname)}}
+		<div class="col-sm-4">
+			{{ form_widget(form.firstname, {'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(form.lastname, "Nom", {'label_attr': {'class': 'col-sm-3 control-label'}})}}
+
+		{{ form_errors(form.lastname)}}
+		<div class="col-sm-4">
+			{{ form_widget(form.lastname, {'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(form.username, "Nom d'utilisateur", {'label_attr': {'class': 'col-sm-3 control-label'}})}}
+
+		{{ form_errors(form.username)}}
+		<div class="col-sm-4">
+			{{ form_widget(form.username, {'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(form.password, "Mot de passe", {'label_attr': {'class': 'col-sm-3 control-label'}})}}
+
+		{{ form_errors(form.password)}}
+		<div class="col-sm-4">
+			{{ form_widget(form.password, {'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.admin, "Administrateur", {'label_attr': {'class': 'col-sm-3 control-label'}})}}
+
+		{{ form_errors(form.admin)}}
+		<div class="col-sm-4">
+			{% if is_granted('ROLE_ADMIN') %}
+			{{ form_widget(form.admin, { 'attr':{'class':'form-control'}}) }}
+			{% else %}
+			{{ form_widget(form.admin, {'disabled':true , 'attr':{'class':'form-control'}}) }}
+			{% endif %}
+		</div>
+	</div>
+	{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary ','value':'Valider'}}) }}
+     
+    {{ form_end(form) }}
+</div>

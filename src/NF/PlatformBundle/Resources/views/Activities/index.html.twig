@@ -1,0 +1,136 @@
+{% extends "NFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block nfplatform_body %}
+	<h2>Tableau d'activités<small>  du lundi {{ debut|date('d-m-Y')}} au dimanche {{ fin|date('d-m-Y')}}</small></h2>
+		<hr>
+	{% for message in app.session.flashbag.get('notice') %}
+        <p class="alert alert-success" >{{ message }}</p>
+      {% endfor %}
+
+	<div class="well">
+
+	<p>Importer un excel pré-rempli :</p>
+	{{ form_start(import, {'attr':{'class':'form-horizontal'}}) }}
+
+	{{ form_errors(import) }}
+		<div class="form-group col-sm-7">
+			{{ form_widget(import.file)}}
+		</div>
+		{{ form_widget(import.save, {'attr': {'class': 'btn btn-primary ','value':'Valider'}}) }}
+	{{ form_end(import) }}
+	</div>
+
+	<div class="col-md-offset-2">
+	<div class="btn-group" role="group" >
+		
+		<a class="btn btn-default" href="{{ path('nf_platform_home',
+			{'year': current|date('Y') ,
+			'month': current|date('m'),
+			'day':current|date('d'),
+			'param':'last week','id':user.id}
+			) }}" role="button"> <span aria-hidden="true">&larr;</span> Semaine précedente</a>
+	
+		
+		{% if today|date('W')>current|date('W') %}
+			<a  class="btn btn-default disabled" role="button">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			  Ajouter une activité</a>
+
+		{% else %}	
+			<a  href="{{ path('nf_platform_add',{'id':user.id})}}"	class="btn btn-default" role="button">
+			<span class="glyphicon glyphicon-plus" 	aria-hidden="true"></span>
+			  Ajouter une activité</a>
+		{% endif %}
+
+	
+		<a href="{{ path('nf_platform_excel',{'id':user.id})}}" class="btn btn-default"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export au format Excel</a>
+	
+		<a class="btn btn-default" href="{{path('nf_platform_home',
+			{'year': current|date('Y') ,
+			'month': current|date('m'),
+			'day':current|date('d'),
+			'param':'next week','id':user.id }
+			) }}" role="button">Semaine suivante <span aria-hidden="true">&rarr;</span></a>
+		</div>
+	</div>
+
+	<table class="table table-bordered">
+		<tr class="active" >
+			<th>  </th>
+			{% for date in period %}
+
+	 		<th >{{ date|date('d/m/Y') }}</th>
+			
+	 		{% endfor %}
+	 		<th>Totaux sous catégories</th>
+		</tr>
+			{% for categorie in listCats %}
+			<tr class="active"><th>{{ categorie.title }}</th></tr>
+				{% for sousCat in listSousCats if categorie == sousCat.categories%}
+				<tr>
+						<td>
+							{{ sousCat.title }}
+						</td>
+					{% for date in period %}
+						{% if date|date('d/m/Y') == today|date('d/m/Y')%}
+						<td class="info">  
+						{% else %}
+						<td>
+						{% endif %}
+						{% for activite in activities if date|date('d/m/Y') == activite.date|date('d/m/Y') %}
+							{% if activite.sousCategories == sousCat %}
+								<a data-toogle="tooltip" data-placement="bottom" title="Commentaire : {{activite.coment}}" href="{{path('nf_platform_edit',{'id': activite.id})}}" >{{ activite.montant }}</a>
+							{% endif %}
+						{% endfor %}
+						</td>
+						{% endfor %}
+						{% for montantSousCat in montantsSousCat%}
+							{% if montantSousCat.sousCategories == sousCat %}
+								<td class="success">{{ montantSousCat.montant }}</td>
+							{% endif %}
+						{% endfor %}
+				</tr>
+
+				{% endfor %}
+				<tr class="success">
+					<td>
+						Total
+					</td>
+					{% for date in period %}
+						{% for montantJour in montantsJour if montantJour.date == date%}
+							{% if montantJour.categories == categorie%}
+								<td>{{ montantJour.montant}}</td>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+						{% for montantCat in montantsCategorie %}
+							{% if montantCat.Categories == categorie %}
+								<td>{{ montantCat.montant }}</td>
+							{% endif %}
+						{% endfor %}	
+				</tr>
+
+			{% endfor %}
+			
+		<tr>
+			<td> Total Jours </td>
+			{% for montantTJour in montantsTotalJour %}
+				{% for date in period if montantTJour.date == date %}
+					<td>{{ montantTJour.montant }}</td>
+				{% endfor %}
+			{% endfor %}
+		</tr>	
+		<tr>
+			<td>Total semaine</td>
+			<td colspan="7"></td>
+			<td>{{ montantSemaine.montant }}</td>
+
+		</tr>
+
+	 </table>
+
+{% endblock %}

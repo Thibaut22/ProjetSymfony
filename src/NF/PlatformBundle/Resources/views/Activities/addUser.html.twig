@@ -1,0 +1,15 @@
+{% extends "NFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Nouvel utilisateur - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	
+	<h2>Ajout d'un utilisateur</h2>
+	
+		{{ include("NFPlatformBundle:Activities:formUser.html.twig") }}
+
+	
+
+{% endblock %}

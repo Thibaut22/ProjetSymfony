@@ -1,0 +1,14 @@
+nf_platform:
+    resource: "@NFPlatformBundle/Resources/config/routing.yml"
+    prefix:   /platform
+
+login:
+    pattern:   /login
+    defaults:  { _controller: NFPlatformBundle:Activities:login }
+
+login_check:
+    pattern:   /login_check
+
+
+logout:
+    pattern:   /logout

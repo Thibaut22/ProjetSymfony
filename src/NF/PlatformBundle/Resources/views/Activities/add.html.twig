@@ -1,0 +1,27 @@
+{% extends "NFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une activité - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div>
+		<a class="btn btn-default" href="{{ path('nf_platform_home'
+		) }}" role="button"> <span aria-hidden="true">&larr;</span> Retour semaine actuelle</a>
+
+	</div>
+
+
+	 <h2>Ajouter une activité</h2>
+	 {% for message in app.session.flashbag.get('notice') %}
+        <p class="alert alert-warning" >{{ message }}</p>
+      {% endfor %}
+
+      <h4 class="modal-title" id="myModalLabel">Formulaire d'ajout d'une activité</h4>
+	 	{{ include("NFPlatformBundle:Activities:form.html.twig") }}
+	 <p>
+    Attention : cette activité sera ajoutée directement
+    sur la page d'accueil après validation du formulaire.
+  	</p>
+
+{% endblock %}
